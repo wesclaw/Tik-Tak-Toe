@@ -197,8 +197,7 @@ function getWinner() {
     info.textContent = 'O wins!';
     restartGame()
   }
-  if (
-    Array.from(cells).every(cell => {
+  if (Array.from(cells).every(cell => {
       return cell.innerHTML.includes('x') || cell.innerHTML.includes('o');
     })
   ) {

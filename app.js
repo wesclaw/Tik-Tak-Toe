@@ -14,9 +14,26 @@ const info = document.getElementById('info');
 
 let go = 'x';
 
+const restart_btn = document.getElementById('restart_btn')
+
+function restartGame(){
+  restart_btn.style.display = 'block'
+  restart_btn.addEventListener('click',()=>{
+    location.reload()
+  })
+}
+
+function tieGame(){
+  info.textContent = "It's a draw..."
+  restartGame()
+}
+
+
+
 // need to know how to see whats inside the boxone inner html? i was looking
 // to the classlist on the box1...box1 only has the cell class and box1 class.
 // i thought the x class was inside the box1. the x class is only on the created element
+
 
 function getWinner() {
   if (
@@ -28,6 +45,7 @@ function getWinner() {
     box2.classList.add('win');
     box3.classList.add('win');
     info.textContent = 'X wins!';
+    restartGame()
   } else if (
     box1.innerHTML.includes('o') &&
     box2.innerHTML.includes('o') &&
@@ -37,6 +55,7 @@ function getWinner() {
     box2.classList.add('win');
     box3.classList.add('win');
     info.textContent = 'O wins!';
+    restartGame()
   } else if (
     box4.innerHTML.includes('x') &&
     box5.innerHTML.includes('x') &&
@@ -46,6 +65,7 @@ function getWinner() {
     box5.classList.add('win');
     box6.classList.add('win');
     info.textContent = 'X wins!';
+    restartGame()
   } else if (
     box4.innerHTML.includes('o') &&
     box5.innerHTML.includes('o') &&
@@ -55,6 +75,7 @@ function getWinner() {
     box5.classList.add('win');
     box6.classList.add('win');
     info.textContent = 'O wins!';
+    restartGame()
   } else if (
     box7.innerHTML.includes('x') &&
     box8.innerHTML.includes('x') &&
@@ -64,6 +85,7 @@ function getWinner() {
     box8.classList.add('win');
     box9.classList.add('win');
     info.textContent = 'X wins!';
+    restartGame()
   } else if (
     box7.innerHTML.includes('o') &&
     box8.innerHTML.includes('o') &&
@@ -73,6 +95,7 @@ function getWinner() {
     box8.classList.add('win');
     box9.classList.add('win');
     info.textContent = 'O wins!';
+    restartGame()
   } else if (
     box1.innerHTML.includes('x') &&
     box4.innerHTML.includes('x') &&
@@ -82,6 +105,7 @@ function getWinner() {
     box4.classList.add('win');
     box7.classList.add('win');
     info.textContent = 'X wins!';
+    restartGame()
   } else if (
     box1.innerHTML.includes('o') &&
     box4.innerHTML.includes('o') &&
@@ -91,6 +115,7 @@ function getWinner() {
     box4.classList.add('win');
     box7.classList.add('win');
     info.textContent = 'O wins!';
+    restartGame()
   } else if (
     box2.innerHTML.includes('x') &&
     box5.innerHTML.includes('x') &&
@@ -100,6 +125,7 @@ function getWinner() {
     box5.classList.add('win');
     box8.classList.add('win');
     info.textContent = 'X wins!';
+    restartGame()
   } else if (
     box2.innerHTML.includes('o') &&
     box5.innerHTML.includes('o') &&
@@ -109,6 +135,7 @@ function getWinner() {
     box5.classList.add('win');
     box8.classList.add('win');
     info.textContent = 'O wins!';
+    restartGame()
   } else if (
     box3.innerHTML.includes('x') &&
     box6.innerHTML.includes('x') &&
@@ -118,6 +145,7 @@ function getWinner() {
     box6.classList.add('win');
     box9.classList.add('win');
     info.textContent = 'X wins!';
+    restartGame()
   } else if (
     box3.innerHTML.includes('o') &&
     box6.innerHTML.includes('o') &&
@@ -127,6 +155,7 @@ function getWinner() {
     box6.classList.add('win');
     box9.classList.add('win');
     info.textContent = 'O wins!';
+    restartGame()
   } else if (
     box1.innerHTML.includes('x') &&
     box5.innerHTML.includes('x') &&
@@ -136,6 +165,7 @@ function getWinner() {
     box5.classList.add('win');
     box9.classList.add('win');
     info.textContent = 'X wins!';
+    restartGame()
   } else if (
     box1.innerHTML.includes('o') &&
     box5.innerHTML.includes('o') &&
@@ -145,6 +175,7 @@ function getWinner() {
     box5.classList.add('win');
     box9.classList.add('win');
     info.textContent = 'O wins!';
+    restartGame()
   } else if (
     box3.innerHTML.includes('x') &&
     box5.innerHTML.includes('x') &&
@@ -154,6 +185,7 @@ function getWinner() {
     box5.classList.add('win');
     box7.classList.add('win');
     info.textContent = 'X wins!';
+    restartGame()
   } else if (
     box3.innerHTML.includes('o') &&
     box5.innerHTML.includes('o') &&
@@ -163,6 +195,14 @@ function getWinner() {
     box5.classList.add('win');
     box7.classList.add('win');
     info.textContent = 'O wins!';
+    restartGame()
+  }
+  if (
+    Array.from(cells).every(cell => {
+      return cell.innerHTML.includes('x') || cell.innerHTML.includes('o');
+    })
+  ) {
+    tieGame();
   }
 }
 

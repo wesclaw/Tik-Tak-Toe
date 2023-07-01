@@ -32,6 +32,7 @@ function tieGame(){
 // to the classlist on the box1...box1 only has the cell class and box1 class.
 // i thought the x class was inside the box1. the x class is only on the created element
 
+let hasWinner = false
 
 function getWinner() {
   if (
@@ -44,7 +45,9 @@ function getWinner() {
     box3.classList.add('win');
     info.textContent = 'X wins!';
     restartGame()
-    return
+    cells.forEach(cell=>cell.removeEventListener('click', goDisplay));
+    hasWinner = true
+    return;
   } else if (
     box1.innerHTML.includes('o') &&
     box2.innerHTML.includes('o') &&
@@ -55,7 +58,9 @@ function getWinner() {
     box3.classList.add('win');
     info.textContent = 'O wins!';
     restartGame()
-    return
+    cells.forEach(cell=>cell.removeEventListener('click', goDisplay));
+    hasWinner = true
+    return;
   } else if (
     box4.innerHTML.includes('x') &&
     box5.innerHTML.includes('x') &&
@@ -66,6 +71,8 @@ function getWinner() {
     box6.classList.add('win');
     info.textContent = 'X wins!';
     restartGame()
+    cells.forEach(cell=>cell.removeEventListener('click', goDisplay));
+    hasWinner = true
     return
   } else if (
     box4.innerHTML.includes('o') &&
@@ -77,6 +84,8 @@ function getWinner() {
     box6.classList.add('win');
     info.textContent = 'O wins!';
     restartGame()
+    cells.forEach(cell=>cell.removeEventListener('click', goDisplay));
+    hasWinner = true
     return
   } else if (
     box7.innerHTML.includes('x') &&
@@ -88,6 +97,8 @@ function getWinner() {
     box9.classList.add('win');
     info.textContent = 'X wins!';
     restartGame()
+    cells.forEach(cell=>cell.removeEventListener('click', goDisplay));
+    hasWinner = true
     return
   } else if (
     box7.innerHTML.includes('o') &&
@@ -99,6 +110,8 @@ function getWinner() {
     box9.classList.add('win');
     info.textContent = 'O wins!';
     restartGame()
+    cells.forEach(cell=>cell.removeEventListener('click', goDisplay));
+    hasWinner = true
     return
   } else if (
     box1.innerHTML.includes('x') &&
@@ -110,6 +123,8 @@ function getWinner() {
     box7.classList.add('win');
     info.textContent = 'X wins!';
     restartGame()
+    cells.forEach(cell=>cell.removeEventListener('click', goDisplay));
+    hasWinner = true
     return
   } else if (
     box1.innerHTML.includes('o') &&
@@ -121,6 +136,8 @@ function getWinner() {
     box7.classList.add('win');
     info.textContent = 'O wins!';
     restartGame()
+    cells.forEach(cell=>cell.removeEventListener('click', goDisplay));
+    hasWinner = true
     return
   } else if (
     box2.innerHTML.includes('x') &&
@@ -132,6 +149,8 @@ function getWinner() {
     box8.classList.add('win');
     info.textContent = 'X wins!';
     restartGame()
+    cells.forEach(cell=>cell.removeEventListener('click', goDisplay));
+    hasWinner = true
     return
   } else if (
     box2.innerHTML.includes('o') &&
@@ -143,6 +162,8 @@ function getWinner() {
     box8.classList.add('win');
     info.textContent = 'O wins!';
     restartGame()
+    cells.forEach(cell=>cell.removeEventListener('click', goDisplay));
+    hasWinner = true
     return
   } else if (
     box3.innerHTML.includes('x') &&
@@ -154,6 +175,8 @@ function getWinner() {
     box9.classList.add('win');
     info.textContent = 'X wins!';
     restartGame()
+    cells.forEach(cell=>cell.removeEventListener('click', goDisplay));
+    hasWinner = true
     return
   } else if (
     box3.innerHTML.includes('o') &&
@@ -165,6 +188,8 @@ function getWinner() {
     box9.classList.add('win');
     info.textContent = 'O wins!';
     restartGame()
+    cells.forEach(cell=>cell.removeEventListener('click', goDisplay));
+    hasWinner = true
     return
   } else if (
     box1.innerHTML.includes('x') &&
@@ -176,6 +201,8 @@ function getWinner() {
     box9.classList.add('win');
     info.textContent = 'X wins!';
     restartGame()
+    cells.forEach(cell=>cell.removeEventListener('click', goDisplay));
+    hasWinner = true
     return
   } else if (
     box1.innerHTML.includes('o') &&
@@ -187,6 +214,8 @@ function getWinner() {
     box9.classList.add('win');
     info.textContent = 'O wins!';
     restartGame()
+    cells.forEach(cell=>cell.removeEventListener('click', goDisplay));
+    hasWinner = true
     return
   } else if (
     box3.innerHTML.includes('x') &&
@@ -198,6 +227,8 @@ function getWinner() {
     box7.classList.add('win');
     info.textContent = 'X wins!';
     restartGame()
+    cells.forEach(cell=>cell.removeEventListener('click', goDisplay));
+    hasWinner = true
     return
   } else if (
     box3.innerHTML.includes('o') &&
@@ -209,6 +240,8 @@ function getWinner() {
     box7.classList.add('win');
     info.textContent = 'O wins!';
     restartGame()
+    cells.forEach(cell=>cell.removeEventListener('click', goDisplay));
+    hasWinner = true
     return
   }
   if (Array.from(cells).every(cell => {
@@ -226,6 +259,9 @@ cells.forEach(cell => {
     x.classList.add('x');
     const o = document.createElement('div');
     o.classList.add('o');
+    if (cell.innerHTML !== '') {
+      return; // Cell already has a value, exit the function
+    }
     if (go === 'x') {
       cell.append(x);
       go = 'o';
@@ -233,8 +269,19 @@ cells.forEach(cell => {
       cell.append(o);
       go = 'x';
     }
+    
     info.textContent = `It is now ${go}'s turn`;
     cell.removeEventListener('click', goDisplay);
     getWinner();
+    
+    closeWinner()
+    
   }
 });
+
+
+function closeWinner(){
+  if(hasWinner){
+    console.log('winner')
+  }
+}

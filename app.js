@@ -285,3 +285,4 @@ function closeWinner(){
     console.log('winner')
   }
 }
+
